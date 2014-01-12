@@ -2,7 +2,6 @@
     "manifest_version": 2,
     "name": "Dunning-Krugerrands",
     "version": "1.0",
-    "default_locale": "en",
     "description": "Replaces the mentions of 'Bitcoin' with 'Dunning-Kruggerands'",
     "author": "Tristan Fisher",
     "icons": {
@@ -15,17 +14,12 @@
         "lib/jquery-2.0.3.min.map"
     ],
     "content_scripts": [{
-        "matches": [
-            "http*://*"
-        ],
+        "matches": ["*://*/*"],
         "js": [
             "lib/jquery-2.0.3.min.js",
             "src/replace_text.js"
         ],
         "all_frames": true,
         "run_at": "document_idle"
-    }],
-    "permissions": [
-        "http*://*"
-    ]
+    }]
 }
