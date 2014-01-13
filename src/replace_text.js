@@ -16,7 +16,7 @@ function traverseDOM(node)
             while (child)
             {
                 sibling = child.nextSibling;
-                traverse_dom(child);
+                traverseDOM(child);
                 child = sibling; //they grow up so fast;
             }
             break;
@@ -26,7 +26,7 @@ function traverseDOM(node)
         default: //skip types we don't explicitly handle
             break;
     }
-} //traverse_dom()
+} //processRegex()
 
 function processRegex(textNodeType)
 {
@@ -35,9 +35,14 @@ function processRegex(textNodeType)
     var termOld = 'bitcoin';
     var termNew = 'dunning-kruggerrand';
 
+    textNodeContent = textNodeContent.replace(/\bBitcoin\b/g, "Dunning-Kruggerrand");
+    textNodeContent = textNodeContent.replace(/\bBitCoin\b/g, "Dunning-Kruggerrand");
+    textNodeContent = textNodeContent.replace(/\bbitCoin\b/g, "Dunning-Kruggerrand");
+    textNodeContent = textNodeContent.replace(/\bbitcoin\b/g, "Dunning-Kruggerrand");
+
     // '\b' : word boundary; '(?i)(term)' any case
     // i basically want replace(/\bbitcoin\b/g, meant), but for now:
-    var regExp = new RegExp(termOld, 'ig');
-    textNodeContent = textNodeContent.replace(regExp, termNew); //replace term
+    //var regExp = new RegExp(termOld, 'ig');
+    //textNodeContent = textNodeContent.replace(regExp, termNew); //replace term
     textNodeType.nodeValue = textNodeContent; //and put it on the page
 }
